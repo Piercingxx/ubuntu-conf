@@ -254,6 +254,7 @@ dconf write /org/gnome/desktop/interface/monospace-font-name 'Terminus (TTF) Med
 dconf write /org/gnome/desktop/wm/preferences/button-layout 'appmenu:minimize,close'
 dconf write /org/gnome/desktop/wm/preferences/button-layout 'appmenu:close'
 dconf write /org/gnome/desktop/interface/cursor-theme 'Adwaita'
-
-
+dconf write /org/gnome/desktop/interface/cursor-size "20"
 dconf write /org/gnome/shell/disabled-extensions "['ubuntu-dock@ubuntu.com', 'tiling-assistant@ubuntu.com', 'ding@rastersoft.com']"
+dconf write /org/gnome/desktop/interface/gtk-theme "'Yaru-blue-dark'"
+dconf write /org/gnome/desktop/interface/icon-theme "'Yaru-blue-dark'"
