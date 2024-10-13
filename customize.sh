@@ -1,12 +1,5 @@
 #!/bin/bash
 
-# Checks for active network connection
-if [[ -n "$(command -v nmcli)" && "$(nmcli -t -f STATE g)" != connected ]]; then
-  awk '{print}' <<<"Network connectivity is required to continue."
-  exit
-fi
-
-
 
 # Customizations 
 ### These will effect your Gnome GUI as well some Hyprland settings
