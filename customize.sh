@@ -38,7 +38,9 @@ gsettings set org.gnome.desktop.wm.keybindings close "['<Super>Q']" && echo "Sup
 gsettings set org.gnome.mutter.wayland.keybindings.restore-shortcuts "['']" 
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true && echo "Tap to Click: True"
 gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true && echo "Natural Scroll: True"
-gsettings set org.gnome.desktop.peripherals.touchpad click-method 'areas' && echo "Click Method: Areas"
+dconf write /org/gnome/desktop/peripherals/touchpad/edge-scrolling-enabled 'false' && echo "Edge Scrolling Enabled: False"
+dconf write /org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled true && echo "Two Finger Scrolling Enabled: True"
+gsettings set org.gnome.desktop.peripherals.touchpad click-method 'fingers' && echo "Click Method: Areas"
 gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'interactive' && echo "Power Button Action: Interactive"
 # Customizations 
 ### These will effect your Gnome GUI as well some Hyprland settings
@@ -254,7 +256,8 @@ dconf write /org/gnome/desktop/interface/monospace-font-name 'Terminus (TTF) Med
 dconf write /org/gnome/desktop/wm/preferences/button-layout 'appmenu:minimize,close'
 dconf write /org/gnome/desktop/wm/preferences/button-layout 'appmenu:close'
 dconf write /org/gnome/desktop/interface/cursor-theme 'Adwaita'
-dconf write /org/gnome/desktop/interface/cursor-size "20"
 dconf write /org/gnome/shell/disabled-extensions "['ubuntu-dock@ubuntu.com', 'tiling-assistant@ubuntu.com', 'ding@rastersoft.com']"
 dconf write /org/gnome/desktop/interface/gtk-theme "'Yaru-blue-dark'"
-dconf write /org/gnome/desktop/interface/icon-theme "'Yaru-blue-dark'"
+dconf write /org/gnome/desktop/interface/icon-theme "'ePapirus-Dark'"
+dconf wrire /org/gnome/shell/ubuntu/startup-sound "''"
+dconf write /org/gnome/desktop/wm/preferences/button-layout "':close'"
