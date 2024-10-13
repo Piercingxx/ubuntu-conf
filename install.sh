@@ -30,7 +30,6 @@ sleep 2
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub com.dropbox.Client -y
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
-flatpak install flathub org.blender.Blender -y
 
 # Install Gnome-extensions-cli
 pipx install gnome-extensions-cli --system-site-packages
