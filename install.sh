@@ -73,3 +73,24 @@ cd Nordzy-cursors || exit
 cd "$builddir" || exit
 rm -rf Nordzy-cursors
 
+
+
+# Extensions
+echo "Gnome Extensions"
+sleep 2
+apt install gnome-shell-extension-appindicator -y
+apt install gnome-shell-extension-gsconnect -y
+apt install gnome-shell-extension-caffeine -y
+
+####***************KNOWN ISSUE***************####
+###These extensions are not installing with the script at the moment, install manually###
+# App Icons Taskbar
+sudo -u "$username" gext install aztaskbar@aztaskbar.gitlab.com
+# Awesome Tiles
+sudo -u "$username" gext install awesome-tiles@velitasali.com
+# Blur My Shell
+sudo -u "$username" gext install blur-my-shell@aunetx
+# Just Perfection
+sudo -u "$username" gext install just-perfection-desktop@just-perfection
+# Open Bar
+sudo -u "$username" gext install openbar@neuromorph
