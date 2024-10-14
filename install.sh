@@ -113,6 +113,5 @@ StartupWMClass=SynologyChat
 Comment=Synology Chat Desktop Client
 Categories=Utility;" | sudo tee -a /usr/share/applications/synochat.desktop
 synochat
-wait
 
 
