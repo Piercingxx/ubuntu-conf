@@ -48,7 +48,9 @@ wait
 sudo dpkg -i synology-drive-client-15724.x86_64.deb
 wait
 
-
+# Gimp dotfiles
+rm -rf /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP/*
+######################finish later
 
 # More Fonts
 mkdir -p $HOME/.fonts
