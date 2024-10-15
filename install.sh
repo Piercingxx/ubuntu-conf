@@ -7,6 +7,23 @@ if [[ -n "$(command -v nmcli)" && "$(nmcli -t -f STATE g)" != connected ]]; then
 fi
 
 
+username=$(id -u -n 1000)
+builddir=$(pwd)
+
+echo "Updating Repositiories"
+sleep 2
+sudo apt update && upgrade -y
+wait
+
+mkdir -p /home/"$username"/Pictures/backgrounds
+cp ~/dotconf/bg.jpg /home/"$username"/Pictures/backgrounds
+chown -R "$username":"$username" /home/"$username"/Pictures/backgrounds
+cp -R dotconf/kitty /home/"$username"/.config/
+chown -R "$username":"$username" /home/"$username"/.config/kitty
+
+
+
+
 apt install wget gpg flatpak gnome-software-plugin-flatpak -y
 flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 apt update && upgrade -y
@@ -30,6 +47,7 @@ sleep 2
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub com.dropbox.Client -y
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
+flatpak install flathub com.tomjwatson.Emote -y
 
 # Install Gnome-extensions-cli
 pipx install gnome-extensions-cli --system-site-packages
@@ -50,7 +68,12 @@ wait
 
 # Gimp dotfiles
 rm -rf /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP/*
-######################finish later
+cd dotconf/Gimp || exit
+unzip "2.99.zip"
+rm "2.99.zip"
+cp /2.99 /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP/
+cd "$builddir" || exit
+
 
 # More Fonts
 mkdir -p $HOME/.fonts
@@ -62,6 +85,10 @@ unzip Meslo.zip
 rm Firacode.zip
 rm Meslo.zip
 
+
+# Reloading Font
+fc-cache -vf
+wait
 
 # Cursors
 wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
@@ -80,18 +107,37 @@ apt install gnome-shell-extension-appindicator -y
 apt install gnome-shell-extension-gsconnect -y
 apt install gnome-shell-extension-caffeine -y
 
-####***************KNOWN ISSUE***************####
-###These extensions are not installing with the script at the moment, install manually###
-# App Icons Taskbar
-sudo -u "$username" gext install aztaskbar@aztaskbar.gitlab.com
-# Awesome Tiles
-sudo -u "$username" gext install awesome-tiles@velitasali.com
-# Blur My Shell
-sudo -u "$username" gext install blur-my-shell@aunetx
-# Just Perfection
-sudo -u "$username" gext install just-perfection-desktop@just-perfection
-# Open Bar
-sudo -u "$username" gext install openbar@neuromorph
+
+
+#Nautilus Customization
+apt install gnome-sushi -y
+apt install imagemagick nautilus-image-converter -y
+apt install nautilus-admin -y
+apt install gir1.2-gtk-4.0 -y
+git clone https://github.com/Stunkymonkey/nautilus-open-any-terminal.git
+cd nautilus-open-any-terminal || exit
+make
+sudo make install schema
+glib-compile-schemas /usr/share/glib-2.0/schemas
+cd "$builddir" || exit
+rm -rf nautilus-open-any-terminal
+
+
+
+
+sudo apt update && upgrade -y
+wait
+apt full-upgrade -y
+wait
+apt install -f
+wait
+dpkg --configure -a
+apt install --fix-broken
+wait
+apt autoremove -y
+sudo apt update && upgrade -y
+wait
+flatpak update -y
 
 
 
