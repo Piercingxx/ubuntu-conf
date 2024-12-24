@@ -18,7 +18,7 @@ sudo apt install -y libxcb-present-dev libxcb-icccm4-dev libxcb-render-util0-dev
 # wayland
 git clone https://gitlab.freedesktop.org/wayland/wayland/-/releases/1.23.0/downloads/wayland-1.23.0.tar.xz
 tar -xf wayland-1.23.0.tar.xz
-cd wayland-1.23.0
+cd wayland-1.23.0 || exit
 mkdir build &&
 cd    build &&
 
@@ -33,7 +33,7 @@ sudo ninja install
 # wayland-protocols
 git clone https://gitlab.freedesktop.org/wayland/wayland-protocols/-/releases/1.38/downloads/wayland-protocols-1.38.tar.xz
 tar -xf wayland-protocols-1.38.tar.xz
-cd wayland-protocols-1.38
+cd wayland-protocols-1.38 || exit
 mkdir build &&
 cd    build &&
 
@@ -44,7 +44,7 @@ sudo ninja install
 
 # libdisplay-info
 git clone https://gitlab.freedesktop.org/emersion/libdisplay-info.git
-cd libdisplay-info
+cd libdisplay-info || exit
 mkdir build &&
 cd    build &&
 meson setup build/
@@ -54,7 +54,7 @@ ninja -C build/
 
 # Build xdg-desktop-portal-hyprland from source
 git clone --recursive https://github.com/hyprwm/xdg-desktop-portal-hyprland
-cd xdg-desktop-portal-hyprland/
+cd xdg-desktop-portal-hyprland/ || exit
 cmake -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib -DCMAKE_INSTALL_PREFIX=/usr -B build
 cmake --build build
 sudo cmake --install build
@@ -62,19 +62,14 @@ sudo cmake --install build
 
 
 # Other needs apps
-apt-get install hyprshot -y
+apt install hyprshot -y
+apt install rofi -y
 
-
-yay -S rofi --noconfirm
-
-
-
-yay -S wtype-git --noconfirm
 
 
 # hyprpaper
 cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
-cmake --build ./build --config Release --target hyprpaper -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+cmake --build ./build --config Release --target hyprpaper -j$(nproc 2>/dev/null || getconf _NPROCESSORS_CONF)
 cmake --install ./build
 
 # hyprlock
