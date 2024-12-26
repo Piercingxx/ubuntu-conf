@@ -80,7 +80,6 @@ chown -R "$username":"$username" gimp-dots
 rm -rf /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP/*
 rm -rf /home/"$username"/.config/GIMP/*
 cd gimp-dots/Gimp || exit
-cp -R 3.0 /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP/
 cp -R 3.0 /home/"$username"/.config/GIMP/
 cd "$builddir" || exit
 
