@@ -48,7 +48,6 @@ flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref
 flatpak install flathub com.tomjwatson.Emote -y
 flatpak install flathub org.gnome.SimpleScan -y
 flatpak install flathub org.kde.kdenlive -y
-flatpak install flathub io.github.lunarequest.NightPDF -y
 
 # Install Gnome-extensions-cli
 pipx install gnome-extensions-cli --system-site-packages
