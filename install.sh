@@ -39,9 +39,6 @@ apt install pipx -y
 apt install gnome-tweaks -y
 apt install gnome-shell-extension-manager -y
 apt install papirus-icon-theme -y
-
-sleep 2
-
 flatpak install flathub net.waterfox.waterfox -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
