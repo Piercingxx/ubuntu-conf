@@ -49,6 +49,7 @@ flatpak install flathub io.missioncenter.MissionCenter -y
 flatpak install flathub org.gnome.SimpleScan -y
 flatpak install flathub com.tomjwatson.Emote -y
 flatpak install flathub org.kde.kdenlive -y
+flatpak install flathub io.github.realmazharhussain.GdmSettings -y
 
 
 # Install Gnome-extensions-cli
