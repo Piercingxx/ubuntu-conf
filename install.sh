@@ -42,9 +42,14 @@ apt install papirus-icon-theme -y
 flatpak install flathub net.waterfox.waterfox -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
-flatpak install flathub com.tomjwatson.Emote -y
+flatpak install flathub org.darktable.Darktable -y
+flatpak install flathub com.mattjakeman.ExtensionManager -y
+flatpak install flathub org.qbittorrent.qBittorrent -y
+flatpak install flathub io.missioncenter.MissionCenter -y
 flatpak install flathub org.gnome.SimpleScan -y
+flatpak install flathub com.tomjwatson.Emote -y
 flatpak install flathub org.kde.kdenlive -y
+
 
 # Install Gnome-extensions-cli
 pipx install gnome-extensions-cli --system-site-packages
@@ -83,15 +88,24 @@ chown "$username":"$username" -R /home/"$username"/.config/GIMP
 cd "$builddir" || exit
 
 
-# More Fonts
-mkdir -p $HOME/.fonts
-cd $HOME/.fonts
+echo "Installing Fonts"
+sleep 2
+# Installing fonts
+cd "$builddir" || exit
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
-unzip FiraCode.zip
+chmod -R 777 FiraCode.zip
+unzip FiraCode.zip -d /home/"$username"/.fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
-unzip Meslo.zip
-rm Firacode.zip
-rm Meslo.zip
+chmod -R 777 Meslo.zip
+unzip Meslo.zip -d /home/"$username"/.fonts
+mv dotfonts/fontawesome/otfs/*.otf /home/"$username"/.fonts/
+chown -R "$username":"$username" /home/"$username"/.fonts
+apt install fonts-font-awesome fonts-noto-color-emoji -y
+apt install ttf-mscorefonts-installer -y
+apt install fonts-terminus -y
+# Removing zip files and stuff
+rm -rf FiraCode.zip
+rm -rf Meslo.zip
 
 
 # Reloading Font
