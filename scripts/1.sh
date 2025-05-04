@@ -10,8 +10,6 @@ fi
 username=$(id -u -n 1000)
 builddir=$(pwd)
 
-echo "Updating Repositiories"
-sleep 2
 sudo apt update && upgrade -y
 wait
 
@@ -75,19 +73,6 @@ wait
 sudo dpkg --force-all -i Synology%20Chat%20Client-1.2.2-0222.deb
 wait
 
-# Gimp dotfiles
-git clone https://github.com/Piercingxx/gimp-dots.git
-chmod -R u+x gimp-dots
-chown -R "$username":"$username" gimp-dots
-rm -Rf /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP/*
-rm -Rf /home/"$username"/.config/GIMP/*
-mkdir /home/"$username"/.config/GIMP/3.0
-chown -R "$username":"$username" /home/"$username"/.config/GIMP
-cd gimp-dots/Gimp || exit
-cp -R "3.0" /home/"$username"/.config/GIMP/
-chown "$username":"$username" -R /home/"$username"/.config/GIMP
-cd "$builddir" || exit
-
 
 echo "Installing Fonts"
 sleep 2
@@ -121,20 +106,8 @@ apt install gnome-shell-extension-appindicator -y
 apt install gnome-shell-extension-gsconnect -y
 apt install gnome-shell-extension-caffeine -y
 # App Icons Taskbar
-wget https://gitlab.com/AndrewZaech/aztaskbar/-/archive/main/aztaskbar-main.tar
-gnome-extensions install aztaskbar-main.tar
 # Awesome Tiles
-git clone https://github.com/velitasali/gnome-shell-extension-awesome-tiles.git
-chmod -R u+x gnome-shell-extension-awesome-tiles
-cd gnome-shell-extension-awesome-tiles || exit
-./install.sh local-install
-cd ..
-rm -rf gnome-shell-extension-awesome-tiles
 # Worthless Gaps
-git clone https://github.com/mipmip/gnome-shell-extensions-useless-gaps.git
-chmod -R u+x nome-shell-extensions-useless-gaps
-cd gnome-shell-extensions-useless-gaps || exit
-./install.sh local-install
 # Just Perfection
 # Blur My Shell
 
